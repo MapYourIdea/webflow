@@ -25,13 +25,30 @@ Webflow.push(function () {
     $(document).off("submit"),
     $("#submitPlacesNearArea").click(function (e) {
       e.preventDefault();
-      prompt = "Act as a local guide: list " + document.getElementById("description").value + " in or near " + document.getElementById("location").value + ". Categorize the results by type of place. Give me a one sentence description of each place using an informative and somewhat humorous tone."
-      title = document.getElementById("description").value + "near" + document.getElementById("location").value
+      prompt = "Act as a local guide: list " + document.getElementById("description").value + " in " + document.getElementById("location").value + ". Categorize the results by type of place. Give me a one sentence description of each place using an informative and somewhat humorous tone."
+      title = document.getElementById("description").value
       window.title = title
       submitMap(
         document.getElementById("location").value,
         title,
         document.getElementById("email").value,
+        prompt
+      );
+    });
+});
+
+//  Trip Planning
+Webflow.push(function () {
+    $(document).off("submit"),
+    $("#submitTripPlanning").click(function (e) {
+      e.preventDefault();
+      prompt = "Act as a local guide: Plan me a " + document.getElementById("tripNumDays").value + " day trip to " + document.getElementById("tripLocation").value + " for " + document.getElementById("tripGroupType").value + ".  Categorize the results by day of the trip."
+      title = document.getElementById("tripNumDays").value + " day " + document.getElementById("tripGroupType").value + " trip"
+      window.title = title
+      submitMap(
+        document.getElementById("tripLocation").value,
+        title,
+        document.getElementById("tripEmail").value,
         prompt
       );
     });
