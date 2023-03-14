@@ -27,7 +27,7 @@ Webflow.push(function () {
     $("#submitPlacesNearArea").click(function (e) {
       e.preventDefault();
       prompt = "Act as a local guide: list " + document.getElementById("description").value + " in " + document.getElementById("location").value + ". Categorize the results by type of place. Give me a one sentence description of each place using an informative and somewhat humorous tone."
-      title = document.getElementById("description").value
+      title = document.getElementById("description").value + " near "+ document.getElementById("location").value
       window.title = title
       submitMap(
         document.getElementById("location").value,
