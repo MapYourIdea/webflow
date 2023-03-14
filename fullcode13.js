@@ -16,6 +16,7 @@ var shareLink,
     idstring,
     title,
     email,
+    locationdetails,
     delayInMilliseconds = 2e3,
     Webflow = Webflow || [];
 
@@ -175,6 +176,7 @@ async function buildMap(e, t, o, p) {
         window.city = e,
         window.description = t,
         window.topicid = i._id.$oid,
+        windown.locationdetails = i.default_map_centure
         getTopics(e),
         amplitude.getInstance().setUserId(o),
 
@@ -182,6 +184,10 @@ async function buildMap(e, t, o, p) {
         window.shareLink = i.cc_read_link,
         shareActions(),
         document.getElementById("sharediv").classList.remove("hide");
+
+        // Get Relevant Maps
+        searchTopics(title, locationdetails);
+
         var a = {
             prompt: title, 
             searchlocation: e, 
@@ -191,39 +197,6 @@ async function buildMap(e, t, o, p) {
         
     i;}
     console.log("Network response was not ok."), console.log(i.status), console.log(i.message), document.getElementById("loadingvideo").classList.add("hide"), document.getElementById("errortext").classList.remove("hide");
-}
-
-
-
-
-// Get Relevant Maps
-let searchURL = new URL("https://map.proxi.co/api/topics?search_filter.include_only_collaborative=false&search_filter.is_public_search=true&search_filter.search_text=");
-function getTopics(e) {
-    let t = new XMLHttpRequest(),
-        o = e,
-        n = searchURL.toString() + encodeURIComponent(o);
-    t.open("GET", n, !0),
-        (t.onload = function () {
-            let e = JSON.parse(this.response)
-                .sort(() => 0.5 - Math.random())
-                .slice(0, 6);
-            if (t.status >= 200 && t.status < 400) {
-                const t = document.getElementById("Cards-Container");
-                e.forEach((e) => {
-                    const o = document.getElementById("samplestyle").cloneNode(!0);
-                    o.setAttribute("id", ""),
-                        (o.style.display = "block"),
-                        o.classList.add("suggestedMap"),
-                        o.addEventListener("click", function () {
-                            document.location.href = e.discover_details_link;
-                        }),
-                        (o.getElementsByTagName("IMG")[0].src = e.custom_social_media_image),
-                        (o.getElementsByTagName("H3")[0].textContent = e.name),
-                        t.appendChild(o);
-                });
-            }
-        }),
-        t.send();
 }
 
 
@@ -239,7 +212,10 @@ async function shareActions() {
 async function updateImage(e) {
     const t = await fetch("https://map.proxi.co/api/topics/" + e, { method: "GET", headers: { accept: "application/json", "Content-Type": "application/json" } }),
         o = await t.json();
-    if (t.ok) return (window.shareImageURL = o.custom_social_media_image), (document.getElementById("socialshareimg").src = o.custom_social_media_image), o;
+    if (t.ok) return (window.shareImageURL = o.custom_social_media_image), 
+    (document.getElementById("socialshareimg").src = o.custom_social_media_image), 
+    window.locationdetails = o.default_map_center,
+    o;
     console.log("Network response was not ok."), document.getElementById("loadingvideo").classList.add("hide"), document.getElementById("errortext").classList.remove("hide");
 }
 
