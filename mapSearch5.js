@@ -45,5 +45,5 @@ async function searchTopics(topicName, searchLocation) {
 }
 
 if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
-  module.exports = searchTopics;
+  module.exports.searchTopics = searchTopics;
 }
