@@ -15,6 +15,7 @@ var shareLink,
     secondplaceimage,
     idstring,
     title,
+    email,
     delayInMilliseconds = 2e3,
     Webflow = Webflow || [];
 
@@ -56,12 +57,13 @@ Webflow.push(function () {
 
 
 
-// Map Loading
+// Map Loading & Activation
 function submitMap(e, t, o, p) {
     var emailForms = document.querySelectorAll("#email-form");
     for (var i = 0; i < emailForms.length; i++) {
       emailForms[i].classList.add("hide");
     }
+    window.email = o,
     document.getElementById("loadingvideo").classList.remove("hide"), 
     document.getElementById("disclaimer").classList.remove("hide"), 
     buildMap(e, t, o, p);
@@ -238,10 +240,14 @@ function getShareImage() {
 
 //Reset Page
 function reset() {
-    document.getElementById("email-form").classList.remove("hide"),
-        (document.getElementById("location").value = document.getElementById("location").value),
-        (document.getElementById("description").value = document.getElementById("description").value),
-        (document.getElementById("email").value = document.getElementById("email").value),
+        var emailForms = document.querySelectorAll("#email-form");
+        for (var i = 0; i < emailForms.length; i++) {
+          emailForms[i].classList.remove("hide");
+        }
+        document.getElementById("location").value = document.getElementById("location").value,
+        document.getElementById("description").value = document.getElementById("description").value,
+        document.getElementById("email").value = email,
+        document.getElementById("tripEmail").value = email,
         document.getElementById("embedholder").classList.add("hide"),
         document.getElementById("logintoproxi").classList.remove("hide"),
         document.getElementById("mapsize").classList.remove("long"),
