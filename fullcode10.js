@@ -60,7 +60,7 @@ Webflow.push(function () {
     $(document).off("submit"),
     $("#submitHistory").click(function (e) {
       e.preventDefault();
-      prompt = "Act as historian: List places where historical events happened related to " +  document.getElementById("historyEvent").value + " in " + document.getElementById("historyLocation").value + ".",
+      prompt = "Act as historian: List places where historical events happened related to " +  document.getElementById("historyEvent").value + " in " + document.getElementById("historyLocation").value + ". Give me a one sentence description of each place using an educational tone.",
       title = "Historical " + document.getElementById("historyEvent").value + " in " + document.getElementById("historyLocation").value
       window.title = title
       submitMap(
