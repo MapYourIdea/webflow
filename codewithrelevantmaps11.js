@@ -29,9 +29,9 @@ Webflow.push(function () {
     $(document).off("submit"),
     $("#submitPlacesNearArea").click(function (e) {
       e.preventDefault();
-      prompt = "Act as a local guide: list " + document.getElementById("description").value + " in " + document.getElementById("location").value + ". Categorize the results by type of place. Give me a one sentence description of each place using an informative and somewhat humorous tone."
-      title = document.getElementById("description").value + " near "+ document.getElementById("location").value
-      window.title = title
+      prompt = "Act as a local guide: list " + document.getElementById("description").value + " in " + document.getElementById("location").value + ". Categorize the results by type of place. Give me a one sentence description of each place using an informative and somewhat humorous tone.";
+      title = document.getElementById("description").value + " near "+ document.getElementById("location").value;
+      window.title = title;
       submitMap(
         document.getElementById("location").value,
         title,
@@ -46,9 +46,9 @@ Webflow.push(function () {
     $(document).off("submit"),
     $("#submitTripPlanning").click(function (e) {
       e.preventDefault();
-      prompt = "Act as a local guide: Plan me a " + document.getElementById("tripNumDays").value + " day trip to " + document.getElementById("tripLocation").value + " for " + document.getElementById("tripGroupType").value + "."
-      title = document.getElementById("tripNumDays").value + " day trip for " + document.getElementById("tripGroupType").value
-      window.title = title
+      prompt = "Act as a local guide: Plan me a " + document.getElementById("tripNumDays").value + " day trip to " + document.getElementById("tripLocation").value + " for " + document.getElementById("tripGroupType").value + ".";
+      title = document.getElementById("tripNumDays").value + " day trip for " + document.getElementById("tripGroupType").value;
+      window.title = title;
       submitMap(
         document.getElementById("tripLocation").value,
         title,
@@ -63,9 +63,9 @@ Webflow.push(function () {
     $(document).off("submit"),
     $("#submitHistory").click(function (e) {
       e.preventDefault();
-      prompt = "Act as historian: List places where historical events happened related to " +  document.getElementById("historyEvent").value + " in " + document.getElementById("historyLocation").value + ". Give me a one sentence description of each place using an educational tone.",
-      title = "Historical " + document.getElementById("historyEvent").value + " in " + document.getElementById("historyLocation").value
-      window.title = title
+      prompt = "Act as historian: List places where historical events happened related to " +  document.getElementById("historyEvent").value + " in " + document.getElementById("historyLocation").value + ". Give me a one sentence description of each place using an educational tone.";
+      title = "Historical " + document.getElementById("historyEvent").value + " in " + document.getElementById("historyLocation").value;
+      window.title = title;
       submitMap(
         document.getElementById("historyLocation").value,
         title,
@@ -80,9 +80,9 @@ Webflow.push(function () {
     $(document).off("submit"),
     $("#submitVibe").click(function (e) {
       e.preventDefault();
-      prompt = "Act as gen z person: List places with a " +  document.getElementById("vibeVibe").value + " in " + document.getElementById("vibeLocation").value + ". Give me a one sentence description of each place using gen z slang.",
-      title = document.getElementById("vibeVibe").value + " vibes in " + document.getElementById("vibeLocation").value,
-      window.title = title
+      prompt = "Act as gen z person: List places with a " +  document.getElementById("vibeVibe").value + " in " + document.getElementById("vibeLocation").value + ". Give me a one sentence description of each place using gen z slang.";
+      title = document.getElementById("vibeVibe").value + " vibes in " + document.getElementById("vibeLocation").value;
+      window.title = title;
       submitMap(
         document.getElementById("vibeLocation").value,
         title,
@@ -97,9 +97,9 @@ Webflow.push(function () {
     $(document).off("submit"),
     $("#submitFreeform").click(function (e) {
       e.preventDefault();
-      prompt = "Act as tour guide: List places " +  document.getElementById("freeformPrompt").value + " in " + document.getElementById("freeformLocation").value + ". Give me a one sentence about each place.",
-      title = document.getElementById("freeformPrompt").value + " in " + document.getElementById("freeformLocation").value,
-      window.title = title
+      prompt = "Act as tour guide: List places " +  document.getElementById("freeformPrompt").value + " in " + document.getElementById("freeformLocation").value + ". Give me a one sentence about each place.";
+      title = document.getElementById("freeformPrompt").value + " in " + document.getElementById("freeformLocation").value;
+      window.title = title;
       submitMap(
         document.getElementById("freeformLocation").value,
         title,
@@ -114,9 +114,9 @@ Webflow.push(function () {
     $(document).off("submit"),
     $("#submitTextToMap").click(function (e) {
       e.preventDefault();
-      prompt = "List the places mentioned in this text: " +  document.getElementById("textToMapPrompt").value + ". Most should be near " + document.getElementById("textToMapLocation").value + ".",
-      title = "Custom Map in " + document.getElementById("textToMapLocation").value,
-      window.title = title
+      prompt = "List the places mentioned in this text: " +  document.getElementById("textToMapPrompt").value + ". Most should be near " + document.getElementById("textToMapLocation").value + ".";
+      title = "Custom Map in " + document.getElementById("textToMapLocation").value;
+      window.title = title;
       submitMap(
         document.getElementById("textToMapLocation").value,
         title,
@@ -178,7 +178,7 @@ async function buildMap(e, t, o, p) {
         window.city = e,
         window.description = t,
         window.topicid = i._id.$oid,
-        windown.locationdetails = i.default_map_centure
+        windown.locationdetails = i.default_map_center,
         getTopics(e),
         amplitude.getInstance().setUserId(o),
 
