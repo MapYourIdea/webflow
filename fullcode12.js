@@ -106,6 +106,23 @@ Webflow.push(function () {
     });
 });
 
+//  Text to Map
+Webflow.push(function () {
+    $(document).off("submit"),
+    $("#submitTextToMap").click(function (e) {
+      e.preventDefault();
+      prompt = "List the places mentioned in this text: " +  document.getElementById("textToMapPrompt").value + ". Most should be near " + document.getElementById("textToMapLocation").value + ".",
+      title = "Custom Map in " + document.getElementById("textToMapLocation").value,
+      window.title = title
+      submitMap(
+        document.getElementById("textToMapLocation").value,
+        title,
+        document.getElementById("textToMapEmail").value,
+        prompt
+      );
+    });
+});
+
 
 
 
@@ -302,6 +319,7 @@ function reset() {
         document.getElementById("tripEmail").value = email,
         document.getElementById("historyEmail").value = email,
         document.getElementById("vibeEmail").value = email,
+        document.getElementById("textToMapEmail").value = email,
         document.getElementById("freeformEmail").value = email,
         document.getElementById("embedholder").classList.add("hide"),
         document.getElementById("logintoproxi").classList.remove("hide"),
