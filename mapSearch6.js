@@ -1,4 +1,4 @@
-async function searchTopics(topicName, searchLocation) {
+export async function searchTopics(topicName, searchLocation) {
   const searchFilter = {};
   searchFilter.location_match = {
     location: searchLocation,
@@ -42,8 +42,4 @@ async function searchTopics(topicName, searchLocation) {
   } catch (error) {
     console.error(error);
   }
-}
-
-if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
-  module.exports.searchTopics = searchTopics;
 }
