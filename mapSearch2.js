@@ -1,4 +1,4 @@
-async function searchTopics(topicName, searchLocation) {
+export function searchTopics(topicName, searchLocation) {
   const searchFilter = {};
   searchFilter.location_match = {
     location: searchLocation,
