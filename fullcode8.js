@@ -55,6 +55,23 @@ Webflow.push(function () {
     });
 });
 
+//  History
+Webflow.push(function () {
+    $(document).off("submit"),
+    $("#submitTripPlanning").click(function (e) {
+      e.preventDefault();
+      prompt = "Act as historian: List places where historical events happened related to " +  document.getElementById("historyEvent").value + " in " + document.getElementById("historyLocation").value + ".  Categorize the results by type of event"
+      title = "Historical " + document.getElementById("historyEvent").value + " in " + document.getElementById("historyLocation").value
+      window.title = title
+      submitMap(
+        document.getElementById("historyLocation").value,
+        title,
+        document.getElementById("historyEmail").value,
+        prompt
+      );
+    });
+});
+
 
 
 // Map Loading & Activation
@@ -248,6 +265,7 @@ function reset() {
         document.getElementById("description").value = document.getElementById("description").value,
         document.getElementById("email").value = email,
         document.getElementById("tripEmail").value = email,
+        document.getElementById("historyEmail").value = email,
         document.getElementById("embedholder").classList.add("hide"),
         document.getElementById("logintoproxi").classList.remove("hide"),
         document.getElementById("mapsize").classList.remove("long"),
