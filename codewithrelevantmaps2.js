@@ -1,3 +1,4 @@
+import { searchTopics } from 'mapSearch.js';
 var shareLink,
     topicid,
     description,
