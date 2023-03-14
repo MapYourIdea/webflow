@@ -58,7 +58,7 @@ Webflow.push(function () {
 //  History
 Webflow.push(function () {
     $(document).off("submit"),
-    $("#submitTripPlanning").click(function (e) {
+    $("#submitHistory").click(function (e) {
       e.preventDefault();
       prompt = "Act as historian: List places where historical events happened related to " +  document.getElementById("historyEvent").value + " in " + document.getElementById("historyLocation").value + ".  Categorize the results by type of event"
       title = "Historical " + document.getElementById("historyEvent").value + " in " + document.getElementById("historyLocation").value
