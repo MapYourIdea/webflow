@@ -43,7 +43,7 @@ Webflow.push(function () {
     $(document).off("submit"),
     $("#submitTripPlanning").click(function (e) {
       e.preventDefault();
-      prompt = "Act as a local guide: Plan me a " + document.getElementById("tripNumDays").value + " day trip to " + document.getElementById("tripLocation").value + " for " + document.getElementById("tripGroupType").value + ".  Categorize the results by day of the trip."
+      prompt = "Act as a local guide: Plan me a " + document.getElementById("tripNumDays").value + " day trip to " + document.getElementById("tripLocation").value + " for " + document.getElementById("tripGroupType").value + "."
       title = document.getElementById("tripNumDays").value + " day trip for " + document.getElementById("tripGroupType").value
       window.title = title
       submitMap(
@@ -60,7 +60,7 @@ Webflow.push(function () {
     $(document).off("submit"),
     $("#submitHistory").click(function (e) {
       e.preventDefault();
-      prompt = "Act as historian: List places where historical events happened related to " +  document.getElementById("historyEvent").value + " in " + document.getElementById("historyLocation").value + ".  Categorize the results by type of event"
+      prompt = "Act as historian: List places where historical events happened related to " +  document.getElementById("historyEvent").value + " in " + document.getElementById("historyLocation").value + ".",
       title = "Historical " + document.getElementById("historyEvent").value + " in " + document.getElementById("historyLocation").value
       window.title = title
       submitMap(
