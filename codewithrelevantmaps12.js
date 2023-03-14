@@ -1,4 +1,4 @@
-import { searchTopics } from '/gh/MapYourIdea/webflow/mapSearch6.js';
+//import { searchTopics } from '/gh/MapYourIdea/webflow/mapSearch6.js';
 
 var shareLink,
     topicid,
@@ -188,7 +188,7 @@ async function buildMap(e, t, o, p) {
         document.getElementById("sharediv").classList.remove("hide");
 
         // Get Relevant Maps
-        searchTopics(title, locationdetails);
+        //searchTopics(title, locationdetails);
 
         var a = {
             prompt: title, 
