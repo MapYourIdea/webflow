@@ -43,7 +43,7 @@ Webflow.push(function () {
     $("#submitTripPlanning").click(function (e) {
       e.preventDefault();
       prompt = "Act as a local guide: Plan me a " + document.getElementById("tripNumDays").value + " day trip to " + document.getElementById("tripLocation").value + " for " + document.getElementById("tripGroupType").value + ".  Categorize the results by day of the trip."
-      title = document.getElementById("tripNumDays").value + " day " + document.getElementById("tripGroupType").value + " trip"
+      title = document.getElementById("tripNumDays").value + " day trip for " + document.getElementById("tripGroupType").value
       window.title = title
       submitMap(
         document.getElementById("tripLocation").value,
@@ -58,7 +58,10 @@ Webflow.push(function () {
 
 // Map Loading
 function submitMap(e, t, o, p) {
-    document.getElementById("email-form").classList.add("hide"), 
+    var emailForms = document.querySelectorAll("#email-form");
+    for (var i = 0; i < emailForms.length; i++) {
+      emailForms[i].classList.add("hide");
+    }
     document.getElementById("loadingvideo").classList.remove("hide"), 
     document.getElementById("disclaimer").classList.remove("hide"), 
     buildMap(e, t, o, p);
@@ -215,7 +218,7 @@ function getShareImage() {
         let e =
             "https://api.placid.app/u/gussx0r6q?" +
             ("prompt[text]=" +
-                encodeURIComponent("Check out my map: " + title) +
+                encodeURIComponent("Check out my map: " + description) +
                 "&placeonetitle[text]=" +
                 encodeURIComponent(firstplacename) +
                 "&placeonedescription[text]=" +
