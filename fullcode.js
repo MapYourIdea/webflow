@@ -16,15 +16,25 @@ var shareLink,
     idstring,
     delayInMilliseconds = 2e3,
     Webflow = Webflow || [];
+
 function submitMap(e, t, o) {
-    document.getElementById("email-form").classList.add("hide"), document.getElementById("loadingvideo").classList.remove("hide"), document.getElementById("disclaimer").classList.remove("hide"), buildMap(e, t, o);
+    document.getElementById("email-form").classList.add("hide"), 
+    document.getElementById("loadingvideo").classList.remove("hide"), 
+    document.getElementById("disclaimer").classList.remove("hide"), 
+    buildMap(e, t, o);
 }
+
 async function buildMap(e, t, o) {
     const n = await fetch("https://map.proxi.co/api/gpt", {
-            method: "POST",
-            headers: { Accept: "application/json", "Content-Type": "application/json" },
-            body: `{\n        "location": "${e}",\n        "description": "${t}",\n        "email": "${o}"\n      }`,
-        }),
+        method: "POST",
+        headers: { Accept: "application/json", "Content-Type": "application/json" },
+        body: `{
+            "location": "${e}",
+            "description": "${t}",
+            "email": "${o}",
+            "custom_prompt": "most unique places to go on a date in NYC"
+        }`,
+    }),
         i = await n.json();
     if (n.ok) {
         console.log("good response"),
@@ -58,7 +68,10 @@ async function buildMap(e, t, o) {
 Webflow.push(function () {
     $(document).off("submit"),
         $("form").submit(function (e) {
-            e.preventDefault(), submitMap(document.getElementById("location").value, document.getElementById("description").value, document.getElementById("email").value);
+            e.preventDefault(),
+                submitMap(document.getElementById("location").value,
+                    document.getElementById("description").value,
+                    document.getElementById("email").value);
         });
 });
 let searchURL = new URL("https://map.proxi.co/api/topics?search_filter.include_only_collaborative=false&search_filter.is_public_search=true&search_filter.search_text=");
@@ -142,21 +155,21 @@ function getImageTwo(e) {
 function getShareImage() {
     setTimeout(function () {
         let e =
-                "https://api.placid.app/u/gussx0r6q?" +
-                ("prompt[text]=" +
-                    encodeURIComponent("Check out my map of <b>" + description + "</b> near  <b>" + city + "</b>") +
-                    "&placeonetitle[text]=" +
-                    encodeURIComponent(firstplacename) +
-                    "&placeonedescription[text]=" +
-                    encodeURIComponent(firstplacedescription) +
-                    "&placetwotitle[text]=" +
-                    encodeURIComponent(secondplacename) +
-                    "&placetwodescription[text]=" +
-                    encodeURIComponent(secondplacedescription) +
-                    "&placeoneimage[image]=" +
-                    encodeURIComponent(firstplaceimage) +
-                    "&placetwoimage[image]=" +
-                    encodeURIComponent(secondplaceimage)),
+            "https://api.placid.app/u/gussx0r6q?" +
+            ("prompt[text]=" +
+                encodeURIComponent("Check out my map of <b>" + description + "</b> near  <b>" + city + "</b>") +
+                "&placeonetitle[text]=" +
+                encodeURIComponent(firstplacename) +
+                "&placeonedescription[text]=" +
+                encodeURIComponent(firstplacedescription) +
+                "&placetwotitle[text]=" +
+                encodeURIComponent(secondplacename) +
+                "&placetwodescription[text]=" +
+                encodeURIComponent(secondplacedescription) +
+                "&placeoneimage[image]=" +
+                encodeURIComponent(firstplaceimage) +
+                "&placetwoimage[image]=" +
+                encodeURIComponent(secondplaceimage)),
             t = shareImageURL;
         (document.getElementById("cover").href = t), (document.getElementById("story").href = e);
     }, delayInMilliseconds);
