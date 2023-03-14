@@ -72,6 +72,41 @@ Webflow.push(function () {
     });
 });
 
+//  Vibe
+Webflow.push(function () {
+    $(document).off("submit"),
+    $("#submitVibe").click(function (e) {
+      e.preventDefault();
+      prompt = "Act as gen z person: List places with a " +  document.getElementById("vibeVibe").value + " in " + document.getElementById("vibeLocation").value + ". Give me a one sentence description of each place using gen z slang.",
+      title = document.getElementById("vibeVibe").value + " vibes in " + document.getElementById("vibeLocation").value,
+      window.title = title
+      submitMap(
+        document.getElementById("vibeLocation").value,
+        title,
+        document.getElementById("vibeEmail").value,
+        prompt
+      );
+    });
+});
+
+//  Freeform
+Webflow.push(function () {
+    $(document).off("submit"),
+    $("#submitFreeform").click(function (e) {
+      e.preventDefault();
+      prompt = "Act as tour guide: List places " +  document.getElementById("freeformPrompt").value + " in " + document.getElementById("freeformLocation").value + ". Give me a one sentence about each place.",
+      title = document.getElementById("freeformPrompt").value + " in " + document.getElementById("freeformLocation").value,
+      window.title = title
+      submitMap(
+        document.getElementById("freeformLocation").value,
+        title,
+        document.getElementById("freeformEmail").value,
+        prompt
+      );
+    });
+});
+
+
 
 
 // Map Loading & Activation
@@ -266,6 +301,8 @@ function reset() {
         document.getElementById("email").value = email,
         document.getElementById("tripEmail").value = email,
         document.getElementById("historyEmail").value = email,
+        document.getElementById("vibeEmail").value = email,
+        document.getElementById("freeformEmail").value = email,
         document.getElementById("embedholder").classList.add("hide"),
         document.getElementById("logintoproxi").classList.remove("hide"),
         document.getElementById("mapsize").classList.remove("long"),
