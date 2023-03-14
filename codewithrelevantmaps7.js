@@ -1,4 +1,4 @@
-import { searchTopics } from '/gh/MapYourIdea/webflow/mapSearch3.js';
+import { searchTopics } from '/gh/MapYourIdea/webflow/mapSearch4.js';
 
 var shareLink,
     topicid,

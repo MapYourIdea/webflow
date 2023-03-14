@@ -1,4 +1,4 @@
-function searchTopics(topicName, searchLocation) {
+async function searchTopics(topicName, searchLocation) {
   const searchFilter = {};
   searchFilter.location_match = {
     location: searchLocation,
