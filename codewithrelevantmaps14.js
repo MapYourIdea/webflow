@@ -1,26 +1,26 @@
 //import { searchTopics } from '/gh/MapYourIdea/webflow/mapSearch6.js';
 
-var shareLink;
-topicid;
-description;
-city;
-shareimagetall;
-shareimagewide;
-shareImageURL;
-firstplaceid;
-firstplacename;
-firstplacedescription;
-firstplaceimage;
-secondplaceid;
-secondplacename;
-secondplacedescription;
-secondplaceimage;
-idstring;
-title;
-email;
-locationdetails;
-delayInMilliseconds = 2e3;
-Webflow = Webflow || [];
+var shareLink,
+topicid,
+description,
+city,
+shareimagetall,
+shareimagewide,
+shareImageURL,
+firstplaceid,
+firstplacename,
+firstplacedescription,
+firstplaceimage,
+secondplaceid,
+secondplacename,
+secondplacedescription,
+secondplaceimage,
+idstring,
+title,
+email,
+locationdetails,
+delayInMilliseconds = 2e3,
+Webflow = Webflow || [],
 
 
 //Submit Actions
