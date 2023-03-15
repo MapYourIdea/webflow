@@ -182,6 +182,7 @@ async function buildMap(e, t, o, p) {
 
         window.shareLink = i.cc_read_link,
         shareActions(),
+        activateTabs(),
         document.getElementById("sharediv").classList.remove("hide");
 
         var a = {
@@ -195,6 +196,9 @@ async function buildMap(e, t, o, p) {
         setTimeout(function () {
             searchTopics(title, locationdetails);
         }, delayInMilliseconds);
+
+
+        
     i;}
     console.log("Network response was not ok."), console.log(i.status), console.log(i.message), document.getElementById("loadingvideo").classList.add("hide"), document.getElementById("errortext").classList.remove("hide");
 }
@@ -218,6 +222,7 @@ async function updateImage(e) {
     o;
     console.log("Network response was not ok."), document.getElementById("loadingvideo").classList.add("hide"), document.getElementById("errortext").classList.remove("hide");
 }
+
 
 //Get Points for Tall Image Creation
 async function getPointData(e) {
@@ -313,6 +318,22 @@ function removeSuggestions() {
     Array.from(document.getElementsByClassName("suggestedMap")).forEach((e) => {
         e.remove();
     });
+}
+
+async function activateTabs() {
+  const emailForm = document.getElementById("email-form");
+
+  if (emailForm.style.display === "none") {
+    const tabLinks = document.querySelectorAll(".tab");
+    tabLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+          var emailForms = document.querySelectorAll("#email-form");
+          for (var i = 0; i < emailForms.length; i++) {
+            emailForms[i].classList.remove("hide");
+          }
+      });
+    });
+  }
 }
 
 async function searchTopics(topicName, searchLocation) {
