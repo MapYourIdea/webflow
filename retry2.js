@@ -1,4 +1,4 @@
-//import { searchTopics } from '/gh/MapYourIdea/webflow/mapSearch6.js';
+import { searchTopics } from '/gh/MapYourIdea/webflow/mapSearch6.js';
 
 var shareLink,
     topicid,
@@ -186,9 +186,6 @@ async function buildMap(e, t, o, p) {
         shareActions(),
         document.getElementById("sharediv").classList.remove("hide");
 
-        // Get Relevant Maps
-        //searchTopics(title, locationdetails);
-
         var a = {
             prompt: title, 
             searchlocation: e, 
@@ -196,6 +193,10 @@ async function buildMap(e, t, o, p) {
             i._id.$oid };
         return amplitude.getInstance().logEvent("MapsGPT: Topic Created", a), 
         
+        // Get Relevant Maps
+        setTimeout(function () {
+            searchTopics(title, locationdetails);
+        }, delayInMilliseconds);
     i;}
     console.log("Network response was not ok."), console.log(i.status), console.log(i.message), document.getElementById("loadingvideo").classList.add("hide"), document.getElementById("errortext").classList.remove("hide");
 }
