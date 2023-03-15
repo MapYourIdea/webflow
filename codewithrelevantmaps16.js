@@ -20,7 +20,7 @@ title,
 email,
 locationdetails,
 delayInMilliseconds = 2e3,
-Webflow = Webflow || [],
+Webflow = Webflow || [];
 
 
 //Submit Actions
