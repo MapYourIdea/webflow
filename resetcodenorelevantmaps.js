@@ -142,7 +142,7 @@ function submitMap(e, t, o, p) {
 
 //Create Map Functions
 async function buildMap(e, t, o, p) {
-    const n = await fetch("https://map.proxi.co/api/gpt", {
+    const n = await fetch("https://betamap.proxi.co/api/gpt", {
         method: "POST",
         headers: { Accept: "application/json", "Content-Type": "application/json" },
         body: `{
@@ -176,11 +176,7 @@ async function buildMap(e, t, o, p) {
         window.city = e,
         window.description = t,
         window.topicid = i._id.$oid,
-        windown.locationdetails = i.default_map_center,
-        getTopics(e),
         amplitude.getInstance().setUserId(o),
-
-
         window.shareLink = i.cc_read_link,
         shareActions(),
         document.getElementById("sharediv").classList.remove("hide");

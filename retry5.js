@@ -44,7 +44,7 @@ Webflow.push(function () {
     $(document).off("submit"),
     $("#submitTripPlanning").click(function (e) {
       e.preventDefault();
-      prompt = "Act as a local guide: Plan me a " + document.getElementById("tripNumDays").value + " day trip to " + document.getElementById("tripLocation").value + " for " + document.getElementById("tripGroupType").value + ".";
+      prompt = "Act as a local guide: Plan me a " + document.getElementById("tripNumDays").value + " day trip to " + document.getElementById("tripLocation").value + " for " + document.getElementById("tripGroupType").value + ". Categorize the results by day of trip starting with Day 1. Include at least three places to visit on each day.";
       title = document.getElementById("tripNumDays").value + " day trip for " + document.getElementById("tripGroupType").value;
       window.title = title;
       submitMap(
@@ -61,7 +61,7 @@ Webflow.push(function () {
     $(document).off("submit"),
     $("#submitHistory").click(function (e) {
       e.preventDefault();
-      prompt = "Act as historian: List places where historical events happened related to " +  document.getElementById("historyEvent").value + " in " + document.getElementById("historyLocation").value + ". Give me a one sentence description of each place using an educational tone.";
+      prompt = "Act as historian: List places where historical events happened related to " +  document.getElementById("historyEvent").value + " in " + document.getElementById("historyLocation").value + ". Categorize the results by time period. Give me a one sentence description of each place using an educational tone.";
       title = "Historical " + document.getElementById("historyEvent").value + " in " + document.getElementById("historyLocation").value;
       window.title = title;
       submitMap(
@@ -78,7 +78,7 @@ Webflow.push(function () {
     $(document).off("submit"),
     $("#submitVibe").click(function (e) {
       e.preventDefault();
-      prompt = "Act as gen z person: List places with a " +  document.getElementById("vibeVibe").value + " in " + document.getElementById("vibeLocation").value + ". Give me a one sentence description of each place using gen z slang.";
+      prompt = "Act as gen z person: List places with a " +  document.getElementById("vibeVibe").value + " in " + document.getElementById("vibeLocation").value + ". Give me a one sentence description of each place using gen z slang. Categorize the results by type of place. Use emojis in the category names.";
       title = document.getElementById("vibeVibe").value + " vibes in " + document.getElementById("vibeLocation").value;
       window.title = title;
       submitMap(
@@ -95,7 +95,7 @@ Webflow.push(function () {
     $(document).off("submit"),
     $("#submitFreeform").click(function (e) {
       e.preventDefault();
-      prompt = "Act as tour guide: List places " +  document.getElementById("freeformPrompt").value + " in " + document.getElementById("freeformLocation").value + ". Give me a one sentence about each place.";
+      prompt = "Act as tour guide: List places " +  document.getElementById("freeformPrompt").value + " in " + document.getElementById("freeformLocation").value + ". Give me a one sentence about each place. Categorize the results by type of place.";
       title = document.getElementById("freeformPrompt").value + " in " + document.getElementById("freeformLocation").value;
       window.title = title;
       submitMap(
@@ -112,7 +112,7 @@ Webflow.push(function () {
     $(document).off("submit"),
     $("#submitTextToMap").click(function (e) {
       e.preventDefault();
-      prompt = "List the places mentioned in this text: " +  document.getElementById("textToMapPrompt").value + ". Most should be near " + document.getElementById("textToMapLocation").value + ".";
+      prompt = "List the places mentioned in this text below. Most places should be in or near " + document.getElementById("textToMapLocation").value + ". Categorize the places as appropriate. Here is the prompt text:" +  document.getElementById("textToMapPrompt").value;
       title = "Custom Map in " + document.getElementById("textToMapLocation").value;
       window.title = title;
       submitMap(
@@ -142,7 +142,7 @@ function submitMap(e, t, o, p) {
 
 //Create Map Functions
 async function buildMap(e, t, o, p) {
-    const n = await fetch("https://map.proxi.co/api/gpt", {
+    const n = await fetch("https://betamap.proxi.co/api/gpt", {
         method: "POST",
         headers: { Accept: "application/json", "Content-Type": "application/json" },
         body: `{
@@ -320,21 +320,7 @@ function removeSuggestions() {
     });
 }
 
-async function activateTabs() {
-  const emailForm = document.getElementById("email-form");
 
-  if (emailForm.style.display === "none") {
-    const tabLinks = document.querySelectorAll(".tab");
-    tabLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-          var emailForms = document.querySelectorAll("#email-form");
-          for (var i = 0; i < emailForms.length; i++) {
-            emailForms[i].classList.remove("hide");
-          }
-      });
-    });
-  }
-}
 
 async function searchTopics(topicName, searchLocation) {
     const searchFilter = {};
