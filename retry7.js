@@ -20,6 +20,8 @@ var shareLink,
     delayInMilliseconds = 2e3,
     Webflow = Webflow || [];
 
+//load leaderboard
+leaderboard();
 
 //Submit Actions
 //  Places Near Area
@@ -45,7 +47,7 @@ Webflow.push(function () {
     $("#submitTripPlanning").click(function (e) {
       e.preventDefault();
       prompt = "Act as a local guide: Plan me a " + document.getElementById("tripNumDays").value + " day trip to " + document.getElementById("tripLocation").value + " for " + document.getElementById("tripGroupType").value + ". Categorize the results by day of trip starting with Day 1. Include at least three places to visit on each day.";
-      title = document.getElementById("tripNumDays").value + " day trip for " + document.getElementById("tripGroupType").value;
+      title = document.getElementById("tripNumDays").value + " day trip for " + document.getElementById("tripGroupType").value + " near " + document.getElementById("tripLocation").value;
       window.title = title;
       submitMap(
         document.getElementById("tripLocation").value,
@@ -62,7 +64,7 @@ Webflow.push(function () {
     $("#submitHistory").click(function (e) {
       e.preventDefault();
       prompt = "Act as historian: List places where historical events happened related to " +  document.getElementById("historyEvent").value + " in " + document.getElementById("historyLocation").value + ". Categorize the results by time period. Give me a one sentence description of each place using an educational tone.";
-      title = "Historical " + document.getElementById("historyEvent").value + " in " + document.getElementById("historyLocation").value;
+      title = document.getElementById("historyEvent").value + " history in " + document.getElementById("historyLocation").value;
       window.title = title;
       submitMap(
         document.getElementById("historyLocation").value,
@@ -366,5 +368,38 @@ async function searchTopics(topicName, searchLocation) {
     } catch (error) {
       console.error(error);
     }
+}
+
+//Leaderboard
+async function leaderboard() {
+  try {
+    const response = await fetch("https://map.proxi.co/api/topics/search", {
+      method: "POST",
+      body: JSON.stringify({
+        source_type: "MapsGPT",
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    let e = data.slice(0, 15);
+    if (response.status >= 200 && response.status < 400) {
+      const t = document.getElementById("Cards-Container-Leaderboard");
+      e.forEach((e) => {
+        const o = document.getElementById("samplestyleleaderboard").cloneNode(!0);
+        o.setAttribute("id", ""),
+          (o.style.display = "block"),
+          o.addEventListener("click", function () {
+            document.location.href = e.discover_details_link;
+          }),
+          (o.getElementsByTagName("IMG")[0].src = e.custom_social_media_image),
+          (o.getElementsByTagName("H3")[0].textContent = e.name),
+          t.appendChild(o);
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
 }
   
