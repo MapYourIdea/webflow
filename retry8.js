@@ -383,7 +383,7 @@ async function leaderboard() {
       },
     });
     const data = await response.json();
-    let e = data.slice(0, 15);
+    let e = data.slice(0, 18);
     if (response.status >= 200 && response.status < 400) {
       const t = document.getElementById("Cards-Container-Leaderboard");
       e.forEach((e) => {
