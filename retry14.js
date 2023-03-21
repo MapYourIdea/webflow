@@ -420,7 +420,7 @@ async function getUserLocation() {
    })
    .then(() => {
     leaderboard2(obj.location);
-    document.getElementById("nearyou").value = "Near " + obj.city.name;
+    document.getElementById("nearyou").textContent = "Near " + obj.city.name;
    })
   .catch(error => console.log('error', error));
   
