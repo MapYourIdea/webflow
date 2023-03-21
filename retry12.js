@@ -22,6 +22,7 @@ var shareLink,
 
 //load leaderboard
 leaderboard(location);
+getUserLocation();
 
 //Submit Actions
 //  Places Near Area
@@ -371,7 +372,7 @@ async function searchTopics(topicName, searchLocation) {
 }
 
 //Leaderboard
-async function leaderboard(location) {
+async function leaderboard() {
   try {
     const response = await fetch("https://map.proxi.co/api/topics/search", {
       method: "POST",
@@ -386,6 +387,69 @@ async function leaderboard(location) {
     let e = data.slice(0, 12);
     if (response.status >= 200 && response.status < 400) {
       const t = document.getElementById("Cards-Container-Leaderboard-Anywhere");
+      e.forEach((e) => {
+        const o = document.getElementById("samplestyleleaderboard").cloneNode(!0);
+        o.setAttribute("id", ""),
+          (o.style.display = "block"),
+          o.addEventListener("click", function () {
+            document.location.href = e.discover_details_link;
+          }),
+          //(o.getElementsByTagName("IMG")[0].src = e.custom_social_media_image),
+          (o.getElementsByTagName("H3")[0].textContent = e.name),
+          t.appendChild(o);
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+//Local Leaderboard
+var requestOptions = {
+  method: 'GET',
+};
+
+async function getUserLocation() {
+  fetch("https://api.geoapify.com/v1/ipinfo?&apiKey=765f0f2a0ceb4f2eb950b6f881a08666", requestOptions)
+  .then(response => response.json())
+  .then(result => {
+    obj = result;
+   })
+  .then(() => {
+    window.userlocation=obj.location;
+   })
+   .then(() => {
+    leaderboard2(obj.location);
+   })
+  .catch(error => console.log('error', error));
+  
+}
+async function leaderboard2(location) {
+  try {
+    const response = await fetch("https://map.proxi.co/api/topics/search", {
+      method: "POST",
+      body: JSON.stringify({
+        source_type: "MapsGPT",
+        location_match: {
+          location: {
+            search: "",
+            place_id: "",
+            latLng: {
+              lat: location.latitude,
+              lng: location.longitude
+            }
+          },
+          max_distance: 20000,
+        }
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    let e = data.slice(0, 12);
+    if (response.status >= 200 && response.status < 400) {
+      const t = document.getElementById("Cards-Container-Leaderboard");
       e.forEach((e) => {
         const o = document.getElementById("samplestyleleaderboard").cloneNode(!0);
         o.setAttribute("id", ""),
