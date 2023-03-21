@@ -21,7 +21,7 @@ var shareLink,
     Webflow = Webflow || [];
 
 //load leaderboard
-leaderboard();
+leaderboard(location);
 
 //Submit Actions
 //  Places Near Area
@@ -371,21 +371,32 @@ async function searchTopics(topicName, searchLocation) {
 }
 
 //Leaderboard
-async function leaderboard() {
+async function leaderboard(location) {
   try {
     const response = await fetch("https://map.proxi.co/api/topics/search", {
       method: "POST",
       body: JSON.stringify({
         source_type: "MapsGPT",
+        location_match: {
+          location: {
+            search: undefined,
+            place_id: undefined,
+            latLng: {
+              lat:,
+              lng: 
+            }
+          },
+          max_distance: 20000,
+        }
       }),
       headers: {
         "Content-Type": "application/json",
       },
     });
     const data = await response.json();
-    let e = data.slice(0, 18);
+    let e = data.slice(0, 11);
     if (response.status >= 200 && response.status < 400) {
-      const t = document.getElementById("Cards-Container-Leaderboard");
+      const t = document.getElementById("Cards-Container-Leaderboard-Anywhere");
       e.forEach((e) => {
         const o = document.getElementById("samplestyleleaderboard").cloneNode(!0);
         o.setAttribute("id", ""),
