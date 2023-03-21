@@ -393,7 +393,7 @@ async function leaderboard(location) {
           o.addEventListener("click", function () {
             document.location.href = e.discover_details_link;
           }),
-          (o.getElementsByTagName("IMG")[0].src = e.custom_social_media_image),
+          //(o.getElementsByTagName("IMG")[0].src = e.custom_social_media_image),
           (o.getElementsByTagName("H3")[0].textContent = e.name),
           t.appendChild(o);
       });
