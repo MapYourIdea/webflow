@@ -145,7 +145,7 @@ function submitMap(e, t, o, p) {
 
 //Create Map Functions
 async function buildMap(e, t, o, p) {
-    const n = await fetch("https://betamap.proxi.co/api/gpt", {
+    const n = await fetch("https://map.proxi.co/api/gpt", {
       method: "POST",
       headers: { Accept: "application/json", "Content-Type": "application/json" },
       body: JSON.stringify({
