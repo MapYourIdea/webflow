@@ -98,7 +98,7 @@ Webflow.push(function () {
     $(document).off("submit"),
     $("#submitFreeform").click(function (e) {
       e.preventDefault();
-      prompt = "Act as tour guide: List places " +  document.getElementById("freeformPrompt").value + " in " + document.getElementById("freeformLocation").value + ". Give me a one sentence about each place. Categorize the results by type of place.";
+      prompt = "Act as tour guide: List places " +  document.getElementById("freeformPrompt").value + " in " + document.getElementById("freeformLocation").value + ". Give me a one sentence about each place. Categorize the results by type of place. Try to have at least three places in each category.";
       title = document.getElementById("freeformPrompt").value + " in " + document.getElementById("freeformLocation").value;
       window.title = title;
       submitMap(
@@ -205,6 +205,13 @@ async function buildMap(e, t, o, p) {
         
     i;}
     console.log("Network response was not ok."), console.log(i.status), console.log(i.message), document.getElementById("loadingvideo").classList.add("hide"), document.getElementById("errortext").classList.remove("hide");
+    var b = {
+      error: i.status, 
+      message: i.message
+    };
+
+    return amplitude.getInstance().logEvent("MapsGPT: Failed Creation", b); 
+  
 }
 
 
