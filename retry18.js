@@ -207,7 +207,8 @@ async function buildMap(e, t, o, p) {
     console.log("Network response was not ok."), console.log(i.status), console.log(i.message), document.getElementById("loadingvideo").classList.add("hide"), document.getElementById("errortext").classList.remove("hide");
     var b = {
       error: i.status, 
-      message: i.message
+      message: i.message,
+      prompt: t
     };
 
     return amplitude.getInstance().logEvent("MapsGPT: Failed Creation", b); 
