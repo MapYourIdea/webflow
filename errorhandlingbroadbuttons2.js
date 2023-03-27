@@ -285,7 +285,7 @@ async function errorHandle(message,e, t, o, p) {
   var resetButtonElement = document.getElementById("errorretry");
   var submitAgain = document.getElementById("sendrequestagain");
 
-  resetButtonElement.addEventListener("click", reset());
+//  resetButtonElement.addEventListener("click", reset());
   submitAgain.addEventListener("click", submitMap(e, t, o, p));
   document.getElementById("sendrequestagain").classList.remove("hide");
 
