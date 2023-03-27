@@ -281,7 +281,7 @@ async function buildMap(e, t, o, p) {
 
 
 async function errorHandle(message,e, t, o, p) {
-  var errorMessageElement = document.getElementById("errortext");
+  var errorMessageElement = document.getElementById("errortextbox");
   var resetButtonElement = document.getElementById("errorretry");
   var submitAgain = document.getElementById("sendrequestagain");
 
