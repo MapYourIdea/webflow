@@ -44,10 +44,12 @@ Webflow.push(function () {
       prompt = "Act as a local guide: list " + document.getElementById("description").value + " in " + document.getElementById("location").value + ". Categorize the results by type of place. Give me a one sentence description of each place using an informative and somewhat humorous tone.";
       title = document.getElementById("description").value + " near "+ document.getElementById("location").value;
       window.title = title;
+
       var formElements = [document.getElementById("description"),document.getElementById("location"),document.getElementById("email")];
       var isFormEmpty = checkFormElementsEmpty(formElements);
+
       if (isFormEmpty) {
-        alert('Please fill in all the fields');
+        alert("You're leaving us hanging! Please fill in all the fields");
       } else {
         submitMap(
           document.getElementById("location").value,
@@ -67,12 +69,20 @@ Webflow.push(function () {
       prompt = "Act as a local guide: Plan me a " + document.getElementById("tripNumDays").value + " day itinerary for a trip to " + document.getElementById("tripLocation").value + " for " + document.getElementById("tripGroupType").value + ". Categorize the results by day of trip starting with Day 1 and ordering them sequentially. Include at least three places to visit on each day.";
       title = document.getElementById("tripNumDays").value + " day trip for " + document.getElementById("tripGroupType").value + " near " + document.getElementById("tripLocation").value;
       window.title = title;
-      submitMap(
-        document.getElementById("tripLocation").value,
-        title,
-        document.getElementById("tripEmail").value,
-        prompt
-      );
+
+      var formElements = [document.getElementById("tripGroupType"),document.getElementById("tripLocation"),document.getElementById("tripNumDays"),document.getElementById("tripEmail")];
+      var isFormEmpty = checkFormElementsEmpty(formElements);
+      
+      if (isFormEmpty) {
+        alert("You're leaving us hanging! Please fill in all the fields");
+      } else {
+        submitMap(
+          document.getElementById("tripLocation").value,
+          title,
+          document.getElementById("tripEmail").value,
+          prompt
+        );
+      }  
     });
 });
 
@@ -84,12 +94,20 @@ Webflow.push(function () {
       prompt = "Act as historian: List places where historical events happened related to " +  document.getElementById("historyEvent").value + " in " + document.getElementById("historyLocation").value + ". Categorize the results by theme. Give me a one sentence description of each place using an educational tone.";
       title = document.getElementById("historyEvent").value + " history in " + document.getElementById("historyLocation").value;
       window.title = title;
-      submitMap(
-        document.getElementById("historyLocation").value,
-        title,
-        document.getElementById("historyEmail").value,
-        prompt
-      );
+
+      var formElements = [document.getElementById("historyEvent"),document.getElementById("historyLocation"),document.getElementById("historyEmail")];
+      var isFormEmpty = checkFormElementsEmpty(formElements);
+      
+      if (isFormEmpty) {
+        alert("You're leaving us hanging! Please fill in all the fields");
+      } else {
+        submitMap(
+          document.getElementById("historyLocation").value,
+          title,
+          document.getElementById("historyEmail").value,
+          prompt
+        );
+      }
     });
 });
 
@@ -101,12 +119,20 @@ Webflow.push(function () {
       prompt = "Act as gen z person: List places with a " +  document.getElementById("vibeVibe").value + " in " + document.getElementById("vibeLocation").value + ". Give me a one sentence description of each place using gen z slang and emojis. Categorize the results by type of place.";
       title = document.getElementById("vibeVibe").value + " vibes in " + document.getElementById("vibeLocation").value;
       window.title = title;
-      submitMap(
-        document.getElementById("vibeLocation").value,
-        title,
-        document.getElementById("vibeEmail").value,
-        prompt
-      );
+
+      var formElements = [document.getElementById("vibeVibe"),document.getElementById("vibeLocation"),document.getElementById("vibeEmail")];
+      var isFormEmpty = checkFormElementsEmpty(formElements);
+
+      if (isFormEmpty) {
+        alert("You're leaving us hanging! Please fill in all the fields");
+      } else {
+        submitMap(
+          document.getElementById("vibeLocation").value,
+          title,
+          document.getElementById("vibeEmail").value,
+          prompt
+        );
+      }
     });
 });
 
@@ -118,12 +144,20 @@ Webflow.push(function () {
       prompt = "Act as tour guide: List places " +  document.getElementById("freeformPrompt").value + " in " + document.getElementById("freeformLocation").value + ". Give me a one sentence about each place. Categorize the results by type of place. Try to have at least three places in each category.";
       title = document.getElementById("freeformPrompt").value + " in " + document.getElementById("freeformLocation").value;
       window.title = title;
-      submitMap(
-        document.getElementById("freeformLocation").value,
-        title,
-        document.getElementById("freeformEmail").value,
-        prompt
-      );
+
+      var formElements = [document.getElementById("freeformPrompt"),document.getElementById("freeformLocation"),document.getElementById("freeformEmail")];
+      var isFormEmpty = checkFormElementsEmpty(formElements);
+
+      if (isFormEmpty) {
+        alert("You're leaving us hanging! Please fill in all the fields");
+      } else {
+        submitMap(
+          document.getElementById("freeformLocation").value,
+          title,
+          document.getElementById("freeformEmail").value,
+          prompt
+        );
+      }
     });
 });
 
@@ -135,17 +169,22 @@ Webflow.push(function () {
       prompt = "List the places mentioned in the text below. Most places should be in or near " + document.getElementById("textToMapLocation").value + ". Categorize by type of place. Leave the description blank. Here is the prompt text:" +  document.getElementById("textToMapPrompt").value;
       title = "Custom map in " + document.getElementById("textToMapLocation").value;
       window.title = title;
-      submitMap(
-        document.getElementById("textToMapLocation").value,
-        title,
-        document.getElementById("textToMapEmail").value,
-        prompt
-      );
+
+      var formElements = [document.getElementById("textToMapPrompt"),document.getElementById("textToMapLocation"),document.getElementById("textToMapEmail")];
+      var isFormEmpty = checkFormElementsEmpty(formElements);
+
+      if (isFormEmpty) {
+        alert("You're leaving us hanging! Please fill in all the fields");
+      } else {
+        submitMap(
+          document.getElementById("textToMapLocation").value,
+          title,
+          document.getElementById("textToMapEmail").value,
+          prompt
+        );
+      }
     });
 });
-
-
-
 
 // Map Loading & Activation
 function submitMap(e, t, o, p) {
