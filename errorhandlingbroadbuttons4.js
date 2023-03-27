@@ -264,6 +264,7 @@ async function buildMap(e, t, o, p) {
     console.log(i.status), 
     console.log(i.message), 
     document.getElementById("loadingvideo").classList.add("hide"),
+    document.getElementById("disclaimer").classList.add("hide"),
     errorHandle(i.message, e, t, o, p),
     document.getElementById("errortext").classList.remove("hide");
 
@@ -285,8 +286,10 @@ async function errorHandle(message,e, t, o, p) {
   var resetButtonElement = document.getElementById("errorretry");
   var submitAgain = document.getElementById("sendrequestagain");
 
-//  resetButtonElement.addEventListener("click", reset());
-  //submitAgain.addEventListener("click", submitMap(e, t, o, p));
+  resetButtonElement.addEventListener("click", reset);
+  submitAgain.addEventListener("click", function() {
+    submitMap(e, t, o, p);
+  });
   document.getElementById("sendrequestagain").classList.remove("hide");
 
 
