@@ -25,6 +25,17 @@ leaderboard(location);
 getUserLocation();
 
 //Submit Actions
+//  Check for Blanks
+function checkFormElementsEmpty(formElements) {
+  for (var i = 0; i < formElements.length; i++) {
+    if (formElements[i].value === '') {
+      return true;
+    }
+  }
+  return false;
+}
+
+//Submit Actions
 //  Places Near Area
 Webflow.push(function () {
     $(document).off("submit"),
@@ -33,12 +44,18 @@ Webflow.push(function () {
       prompt = "Act as a local guide: list " + document.getElementById("description").value + " in " + document.getElementById("location").value + ". Categorize the results by type of place. Give me a one sentence description of each place using an informative and somewhat humorous tone.";
       title = document.getElementById("description").value + " near "+ document.getElementById("location").value;
       window.title = title;
-      submitMap(
-        document.getElementById("location").value,
-        title,
-        document.getElementById("email").value,
-        prompt
-      );
+      var formElements = [document.getElementById("description"),document.getElementById("location"),document.getElementById("email")];
+      var isFormEmpty = checkFormElementsEmpty(formElements);
+      if (isFormEmpty) {
+        alert('Please fill in all the fields');
+      } else {
+        submitMap(
+          document.getElementById("location").value,
+          title,
+          document.getElementById("email").value,
+          prompt
+        );
+      }
     });
 });
 
