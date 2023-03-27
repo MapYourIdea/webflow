@@ -286,7 +286,7 @@ async function errorHandle(message,e, t, o, p) {
   var submitAgain = document.getElementById("sendrequestagain");
 
 //  resetButtonElement.addEventListener("click", reset());
-  submitAgain.addEventListener("click", submitMap(e, t, o, p));
+  //submitAgain.addEventListener("click", submitMap(e, t, o, p));
   document.getElementById("sendrequestagain").classList.remove("hide");
 
 
@@ -294,7 +294,7 @@ async function errorHandle(message,e, t, o, p) {
     errorMessageElement.textContent = "Ope! We couldn't find enough places. Try another prompt.";
     document.getElementById("sendrequestagain").classList.add("hide");
   } else if (message.includes("The location could not be geocoded:")) {
-    errorMessageElement.textContent = "Darn! I'm not smart enough to know where " + e + "is. Try making your search location more specific. Adding the country or city can help.";
+    errorMessageElement.textContent = "Darn! I'm not smart enough to know where " + e + " is. Try making your search location more specific. Adding the country or city can help.";
     document.getElementById("sendrequestagain").classList.add("hide");
   } else {
     errorMessageElement.textContent = "Oh no, the AI is overwhelmed. Give us a sec then try again or update your prompt.";
