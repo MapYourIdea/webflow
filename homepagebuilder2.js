@@ -212,6 +212,8 @@ async function buildMap(e, t, o, p) {
         console.log("good response"),
         amplitude.getInstance().setUserId(o),
         document.getElementById("loadingvideo").classList.add("hide");
+        document.getElementById("tabcontent").classList.add("hide");
+
 
         var a = {
             prompt: title, 
@@ -219,7 +221,7 @@ async function buildMap(e, t, o, p) {
             email: o, "topic_id.$oid": 
             i._id.$oid };
 
-        return amplitude.getInstance().logEvent("MapsGPT: Topic Created", a),
+        return amplitude.getInstance().logEvent("Homepage GPT Mobile: Topic Created", a),
     
         //After Creation Actions
         window.location.replace(i.cc_write_link),
@@ -239,7 +241,7 @@ async function buildMap(e, t, o, p) {
       prompt: t
     };
 
-    return amplitude.getInstance().logEvent("MapsGPT: Failed Creation", b); 
+    return amplitude.getInstance().logEvent("Homepage GPT Mobile: Failed Creation", b); 
   
 }
 
