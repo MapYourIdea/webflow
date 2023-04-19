@@ -191,7 +191,7 @@ function submitMap(e, t, o, p) {
     }
     window.email = o,
     document.getElementById("loadingvideo").classList.remove("hide"), 
-    document.getElementById("tabcontent").classList.add("hide");
+    document.getElementById("tabcontent").classList.add("hide2"),
     buildMap(e, t, o, p);
 }
 
