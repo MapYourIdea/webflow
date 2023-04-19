@@ -191,6 +191,7 @@ function submitMap(e, t, o, p) {
     }
     window.email = o,
     document.getElementById("loadingvideo").classList.remove("hide"), 
+    document.getElementById("tabcontent").classList.add("hide");
     buildMap(e, t, o, p);
 }
 
@@ -212,7 +213,6 @@ async function buildMap(e, t, o, p) {
         console.log("good response"),
         amplitude.getInstance().setUserId(o),
         document.getElementById("loadingvideo").classList.add("hide");
-        document.getElementById("tabcontent").classList.add("hide");
 
 
         var a = {
@@ -250,15 +250,6 @@ async function buildMap(e, t, o, p) {
 
 async function errorHandle(message,e, t, o, p) {
   var errorMessageElement = document.getElementById("errortextbox");
-  var resetButtonElement = document.getElementById("errorretry");
-  var submitAgain = document.getElementById("sendrequestagain");
-
-  resetButtonElement.addEventListener("click", reset);
-  submitAgain.addEventListener("click", function() {
-    submitMap(e, t, o, p);
-  });
-  document.getElementById("sendrequestagain").classList.remove("hide");
-
 
   if (message.includes("Point parsing failed")) {
     errorMessageElement.textContent = "Ope! We couldn't find enough places. Try another prompt.";
