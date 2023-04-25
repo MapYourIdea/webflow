@@ -1,6 +1,4 @@
 
-<script async src="https://get.geojs.io/v1/ip/geo.js"></script>
-
 function geoip(json) {
 
   // The JSON data returned from GeoJS is parsed and the relevant fields are extracted and assigned to variables.
