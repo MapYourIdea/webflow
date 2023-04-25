@@ -6,7 +6,6 @@ function geoip(json) {
   var country = json.country;
   var latitude = json.latitude;
   var longitude = json.longitude;
-  console.log(latitude);
 
   var cityName = city || country;
   document.getElementById("city").innerHTML = cityName;
@@ -24,7 +23,6 @@ function geoip(json) {
 
 
 async function searchTopics(userLocation, cityName) {
-  console.log('executing');
   const searchFilter = {
       "search_filter.location_match": {
           location: userLocation,
