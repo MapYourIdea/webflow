@@ -21,6 +21,8 @@ var shareLink,
     Webflow = Webflow || [];
 
 //load leaderboard
+leaderboard(location);
+getUserLocation();
 
 //Submit Actions
 //  Check for Blanks
@@ -33,7 +35,31 @@ function checkFormElementsEmpty(formElements) {
   return false;
 }
 
+//Submit Actions
+//  Places Near Area
+Webflow.push(function () {
+    $(document).off("submit"),
+    $("#submitPlacesNearArea").click(function (e) {
+      e.preventDefault();
+      prompt = "Act as a local guide: list " + document.getElementById("description").value + " in " + document.getElementById("location").value + ". Categorize the results by type of place. Give me a one sentence description of each place using an informative and somewhat humorous tone.";
+      title = document.getElementById("description").value + " near "+ document.getElementById("location").value;
+      window.title = title;
 
+      var formElements = [document.getElementById("description"),document.getElementById("location"),document.getElementById("email")];
+      var isFormEmpty = checkFormElementsEmpty(formElements);
+
+      if (isFormEmpty) {
+        alert("You're leaving us hanging! Please fill in all the fields");
+      } else {
+        submitMap(
+          document.getElementById("location").value,
+          title,
+          document.getElementById("email").value,
+          prompt
+        );
+      }
+    });
+});
 
 //  Trip Planning
 Webflow.push(function () {
@@ -245,13 +271,13 @@ async function buildMap(e, t, o, p) {
     document.getElementById("errortext").classList.remove("hide");
 
     var b = {
-      error: i.status,
+      error: i.status, 
       message: i.message,
       prompt: t
     };
 
     return amplitude.getInstance().logEvent("MapsGPT: Failed Creation", b);
-
+  
 }
 
 // Error Handling
@@ -287,8 +313,8 @@ let element = document.getElementById("sharemap");
 
 async function shareActions() {
     updateImage(topicid),
-    await getPointData(topicid),
-    await getShareImage();
+    await getPointData(topicid);
+    // await getShareImage();
 }
 async function updateImage(e) {
     const t = await fetch("https://map.proxi.co/api/topics/" + e, { method: "GET", headers: { accept: "application/json", "Content-Type": "application/json" } }),
@@ -342,28 +368,28 @@ function getImageTwo(e) {
             window.secondplaceimage = t;
         });
 }
-function getShareImage() {
-    setTimeout(function () {
-        let e =
-            "https://api.placid.app/u/gussx0r6q?" +
-            ("prompt[text]=" +
-                encodeURIComponent("Check out my map: " + description) +
-                "&placeonetitle[text]=" +
-                encodeURIComponent(firstplacename) +
-                "&placeonedescription[text]=" +
-                encodeURIComponent(firstplacedescription) +
-                "&placetwotitle[text]=" +
-                encodeURIComponent(secondplacename) +
-                "&placetwodescription[text]=" +
-                encodeURIComponent(secondplacedescription) +
-                "&placeoneimage[image]=" +
-                encodeURIComponent(firstplaceimage) +
-                "&placetwoimage[image]=" +
-                encodeURIComponent(secondplaceimage)),
-            t = shareImageURL;
-        (document.getElementById("cover").href = t), (document.getElementById("story").href = e);
-    }, delayInMilliseconds);
-}
+// function getShareImage() {
+//     setTimeout(function () {
+//         let e =
+//             "https://api.placid.app/u/gussx0r6q?" +
+//             ("prompt[text]=" +
+//                 encodeURIComponent("Check out my map: " + description) +
+//                 "&placeonetitle[text]=" +
+//                 encodeURIComponent(firstplacename) +
+//                 "&placeonedescription[text]=" +
+//                 encodeURIComponent(firstplacedescription) +
+//                 "&placetwotitle[text]=" +
+//                 encodeURIComponent(secondplacename) +
+//                 "&placetwodescription[text]=" +
+//                 encodeURIComponent(secondplacedescription) +
+//                 "&placeoneimage[image]=" +
+//                 encodeURIComponent(firstplaceimage) +
+//                 "&placetwoimage[image]=" +
+//                 encodeURIComponent(secondplaceimage)),
+//             t = shareImageURL;
+//         (document.getElementById("cover").href = t), (document.getElementById("story").href = e);
+//     }, delayInMilliseconds);
+// }
 
 //Reset Page
 function reset() {
@@ -541,3 +567,4 @@ async function leaderboard2(location) {
     console.error(error);
   }
 }
+  
