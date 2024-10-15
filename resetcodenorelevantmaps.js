@@ -27,13 +27,13 @@ Webflow.push(function () {
     $(document).off("submit"),
     $("#submitPlacesNearArea").click(function (e) {
       e.preventDefault();
-      prompt = "Act as a local guide: list " + document.getElementById("description").value + " in " + document.getElementById("location").value + ". Categorize the results by type of place. Give me a one sentence description of each place using an informative and somewhat humorous tone."
-      title = document.getElementById("description").value + " near "+ document.getElementById("location").value
+      prompt = "Act as a local guide: list " + document.getElementById("description")?.value + " in " + document.getElementById("location")?.value + ". Categorize the results by type of place. Give me a one sentence description of each place using an informative and somewhat humorous tone."
+      title = document.getElementById("description")?.value + " near "+ document.getElementById("location")?.value
       window.title = title
       submitMap(
-        document.getElementById("location").value,
+        document.getElementById("location")?.value,
         title,
-        document.getElementById("email").value,
+        document.getElementById("email")?.value,
         prompt
       );
     });
@@ -44,13 +44,13 @@ Webflow.push(function () {
     $(document).off("submit"),
     $("#submitTripPlanning").click(function (e) {
       e.preventDefault();
-      prompt = "Act as a local guide: Plan me a " + document.getElementById("tripNumDays").value + " day trip to " + document.getElementById("tripLocation").value + " for " + document.getElementById("tripGroupType").value + "."
-      title = document.getElementById("tripNumDays").value + " day trip for " + document.getElementById("tripGroupType").value
+      prompt = "Act as a local guide: Plan me a " + document.getElementById("tripNumDays")?.value + " day trip to " + document.getElementById("tripLocation")?.value + " for " + document.getElementById("tripGroupType")?.value + "."
+      title = document.getElementById("tripNumDays")?.value + " day trip for " + document.getElementById("tripGroupType")?.value
       window.title = title
       submitMap(
-        document.getElementById("tripLocation").value,
+        document.getElementById("tripLocation")?.value,
         title,
-        document.getElementById("tripEmail").value,
+        document.getElementById("tripEmail")?.value,
         prompt
       );
     });
@@ -61,13 +61,13 @@ Webflow.push(function () {
     $(document).off("submit"),
     $("#submitHistory").click(function (e) {
       e.preventDefault();
-      prompt = "Act as historian: List places where historical events happened related to " +  document.getElementById("historyEvent").value + " in " + document.getElementById("historyLocation").value + ". Give me a one sentence description of each place using an educational tone.",
-      title = "Historical " + document.getElementById("historyEvent").value + " in " + document.getElementById("historyLocation").value
+      prompt = "Act as historian: List places where historical events happened related to " +  document.getElementById("historyEvent")?.value + " in " + document.getElementById("historyLocation")?.value + ". Give me a one sentence description of each place using an educational tone.",
+      title = "Historical " + document.getElementById("historyEvent")?.value + " in " + document.getElementById("historyLocation")?.value
       window.title = title
       submitMap(
-        document.getElementById("historyLocation").value,
+        document.getElementById("historyLocation")?.value,
         title,
-        document.getElementById("historyEmail").value,
+        document.getElementById("historyEmail")?.value,
         prompt
       );
     });
@@ -78,13 +78,13 @@ Webflow.push(function () {
     $(document).off("submit"),
     $("#submitVibe").click(function (e) {
       e.preventDefault();
-      prompt = "Act as gen z person: List places with a " +  document.getElementById("vibeVibe").value + " in " + document.getElementById("vibeLocation").value + ". Give me a one sentence description of each place using gen z slang.",
-      title = document.getElementById("vibeVibe").value + " vibes in " + document.getElementById("vibeLocation").value,
+      prompt = "Act as gen z person: List places with a " +  document.getElementById("vibeVibe")?.value + " in " + document.getElementById("vibeLocation")?.value + ". Give me a one sentence description of each place using gen z slang.",
+      title = document.getElementById("vibeVibe")?.value + " vibes in " + document.getElementById("vibeLocation")?.value,
       window.title = title
       submitMap(
-        document.getElementById("vibeLocation").value,
+        document.getElementById("vibeLocation")?.value,
         title,
-        document.getElementById("vibeEmail").value,
+        document.getElementById("vibeEmail")?.value,
         prompt
       );
     });
@@ -95,13 +95,13 @@ Webflow.push(function () {
     $(document).off("submit"),
     $("#submitFreeform").click(function (e) {
       e.preventDefault();
-      prompt = "Act as tour guide: List places " +  document.getElementById("freeformPrompt").value + " in " + document.getElementById("freeformLocation").value + ". Give me a one sentence about each place.",
-      title = document.getElementById("freeformPrompt").value + " in " + document.getElementById("freeformLocation").value,
+      prompt = "Act as tour guide: List places " +  document.getElementById("freeformPrompt")?.value + " in " + document.getElementById("freeformLocation")?.value + ". Give me a one sentence about each place.",
+      title = document.getElementById("freeformPrompt")?.value + " in " + document.getElementById("freeformLocation")?.value,
       window.title = title
       submitMap(
-        document.getElementById("freeformLocation").value,
+        document.getElementById("freeformLocation")?.value,
         title,
-        document.getElementById("freeformEmail").value,
+        document.getElementById("freeformEmail")?.value,
         prompt
       );
     });
@@ -112,13 +112,13 @@ Webflow.push(function () {
     $(document).off("submit"),
     $("#submitTextToMap").click(function (e) {
       e.preventDefault();
-      prompt = "List the places mentioned in this text: " +  document.getElementById("textToMapPrompt").value + ". Most should be near " + document.getElementById("textToMapLocation").value + ".",
-      title = "Custom Map in " + document.getElementById("textToMapLocation").value,
+      prompt = "List the places mentioned in this text: " +  document.getElementById("textToMapPrompt")?.value + ". Most should be near " + document.getElementById("textToMapLocation")?.value + ".",
+      title = "Custom Map in " + document.getElementById("textToMapLocation")?.value,
       window.title = title
       submitMap(
-        document.getElementById("textToMapLocation").value,
+        document.getElementById("textToMapLocation")?.value,
         title,
-        document.getElementById("textToMapEmail").value,
+        document.getElementById("textToMapEmail")?.value,
         prompt
       );
     });
@@ -288,14 +288,14 @@ function reset() {
         for (var i = 0; i < emailForms.length; i++) {
           emailForms[i].classList.remove("hide");
         }
-        document.getElementById("location").value = document.getElementById("location").value,
-        document.getElementById("description").value = document.getElementById("description").value,
-        document.getElementById("email").value = email,
-        document.getElementById("tripEmail").value = email,
-        document.getElementById("historyEmail").value = email,
-        document.getElementById("vibeEmail").value = email,
-        document.getElementById("textToMapEmail").value = email,
-        document.getElementById("freeformEmail").value = email,
+        document.getElementById("location")?.value = document.getElementById("location")?.value,
+        document.getElementById("description")?.value = document.getElementById("description")?.value,
+        document.getElementById("email")?.value = email,
+        document.getElementById("tripEmail")?.value = email,
+        document.getElementById("historyEmail")?.value = email,
+        document.getElementById("vibeEmail")?.value = email,
+        document.getElementById("textToMapEmail")?.value = email,
+        document.getElementById("freeformEmail")?.value = email,
         document.getElementById("embedholder").classList.add("hide"),
         document.getElementById("logintoproxi").classList.remove("hide"),
         document.getElementById("mapsize").classList.remove("long"),
