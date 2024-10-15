@@ -175,14 +175,16 @@ function submitMap(e, t, o, p) {
 
 //Create Map Functions
 async function buildMap(e, t, o, p) {
-    const n = await fetch("https://map.proxi.co/api/gpt", {
+    const n = await fetch("https://map.proxi.co/api/gpt/topic_create", {
       method: "POST",
       headers: { Accept: "application/json", "Content-Type": "application/json" },
       body: JSON.stringify({
         location: e,
-        description: t,
+        max_points: 15,
         email: o,
-        custom_prompt: p
+        creation_method: {
+          prompt: p
+        }
       }),
     }),
         i = await n.json();
