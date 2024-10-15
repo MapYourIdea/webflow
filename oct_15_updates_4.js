@@ -201,7 +201,7 @@ function submitMap(e, t, o, p, isTtm = false) {
 
 //Create Map Functions
 async function buildMap(e, t, o, p, isTtm = false) {
-    const creation_method = {
+    let creation_method = {
       prompt: p
     };
     if (isTtm) {
