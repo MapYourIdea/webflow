@@ -116,7 +116,7 @@ Webflow.push(function () {
     $(document).off("submit"),
     $("#submitVibe").click(function (e) {
       e.preventDefault();
-      prompt = "Act as gen z person: List places with a " +  document.getElementById("vibeVibe").value + " in " + document.getElementById("vibeLocation").value + ". Give me a one sentence description of each place using gen z slang and emojis. Categorize the results by type of place.";
+      prompt = "Act as gen z person: List places with a " +  document.getElementById("vibeVibe").value + "vibe in " + document.getElementById("vibeLocation").value + ". Give me a one sentence description of each place using gen z slang and emojis. Categorize the results by type of place.";
       title = document.getElementById("vibeVibe").value + " vibes in " + document.getElementById("vibeLocation").value;
       window.title = title;
 
@@ -187,7 +187,7 @@ Webflow.push(function () {
 });
 
 // Map Loading & Activation
-function submitMap(e, t, o, p) {
+function submitMap(e, t, o, p, isTtm = false) {
     var emailForms = document.querySelectorAll("#email-form");
     for (var i = 0; i < emailForms.length; i++) {
       emailForms[i].classList.add("hide");
@@ -195,12 +195,38 @@ function submitMap(e, t, o, p) {
     window.email = o,
     document.getElementById("loadingvideo").classList.remove("hide"), 
     document.getElementById("disclaimer").classList.remove("hide"),
-    buildMap(e, t, o, p);
+    buildMap(e, t, o, p, isTtm);
+}
+
+// Map Loading & Activation
+function submitMapTTM(e, t, o, p) {
+    var emailForms = document.querySelectorAll("#email-form");
+    for (var i = 0; i < emailForms.length; i++) {
+      emailForms[i].classList.add("hide");
+    }
+    window.email = o,
+    document.getElementById("loadingvideo").classList.remove("hide"),
+    document.getElementById("disclaimer").classList.remove("hide"),
+    buildMap(e, t, o, p, true);
 }
 
 
 //Create Map Functions
-async function buildMap(e, t, o, p) {
+async function buildMap(e, t, o, p, isTtm = false) {
+    const creation_method = {
+      prompt: p
+    };
+    if (isTtm) {
+      creation_method = {
+        data: [
+          {
+            data_type: "text",
+            data: p
+          }
+        ]
+      }
+    }
+
     const n = await fetch("https://map.proxi.co/api/gpt/topic_create", {
       method: "POST",
       headers: { Accept: "application/json", "Content-Type": "application/json" },
@@ -208,9 +234,7 @@ async function buildMap(e, t, o, p) {
         location: e,
         max_points: 15,
         email: o,
-        creation_method: {
-          prompt: p
-        }
+        creation_method
       }),
     }),
         i = await n.json();
