@@ -28,7 +28,7 @@ getUserLocation();
 //  Check for Blanks
 function checkFormElementsEmpty(formElements) {
   for (var i = 0; i < formElements.length; i++) {
-    if (formElements[i]?.value === '') {
+    if (formElements[i].value === '') {
       return true;
     }
   }
@@ -41,8 +41,8 @@ Webflow.push(function () {
     $(document).off("submit"),
     $("#submitPlacesNearArea").click(function (e) {
       e.preventDefault();
-      prompt = "Act as a local guide: list " + document.getElementById("description")?.value + " in " + document.getElementById("location")?.value + ". Categorize the results by type of place. Give me a one sentence description of each place using an informative and somewhat humorous tone.";
-      title = document.getElementById("description")?.value + " near "+ document.getElementById("location")?.value;
+      prompt = "Act as a local guide: list " + document.getElementById("description").value + " in " + document.getElementById("location").value + ". Categorize the results by type of place. Give me a one sentence description of each place using an informative and somewhat humorous tone.";
+      title = document.getElementById("description").value + " near "+ document.getElementById("location").value;
       window.title = title;
       var formElements = [document.getElementById("description"),document.getElementById("location"),document.getElementById("email")];
       var isFormEmpty = checkFormElementsEmpty(formElements);
@@ -50,9 +50,9 @@ Webflow.push(function () {
         alert('Please fill in all the fields');
       } else {
         submitMap(
-          document.getElementById("location")?.value,
+          document.getElementById("location").value,
           title,
-          document.getElementById("email")?.value,
+          document.getElementById("email").value,
           prompt
         );
       }
@@ -64,13 +64,13 @@ Webflow.push(function () {
     $(document).off("submit"),
     $("#submitTripPlanning").click(function (e) {
       e.preventDefault();
-      prompt = "Act as a local guide: Plan me a " + document.getElementById("tripNumDays")?.value + " day itinerary for a trip to " + document.getElementById("tripLocation")?.value + " for " + document.getElementById("tripGroupType")?.value + ". Categorize the results by day of trip starting with Day 1 and ordering them sequentially. Include at least three places to visit on each day.";
-      title = document.getElementById("tripNumDays")?.value + " day trip for " + document.getElementById("tripGroupType")?.value + " near " + document.getElementById("tripLocation")?.value;
+      prompt = "Act as a local guide: Plan me a " + document.getElementById("tripNumDays").value + " day itinerary for a trip to " + document.getElementById("tripLocation").value + " for " + document.getElementById("tripGroupType").value + ". Categorize the results by day of trip starting with Day 1 and ordering them sequentially. Include at least three places to visit on each day.";
+      title = document.getElementById("tripNumDays").value + " day trip for " + document.getElementById("tripGroupType").value + " near " + document.getElementById("tripLocation").value;
       window.title = title;
       submitMap(
-        document.getElementById("tripLocation")?.value,
+        document.getElementById("tripLocation").value,
         title,
-        document.getElementById("tripEmail")?.value,
+        document.getElementById("tripEmail").value,
         prompt
       );
     });
@@ -81,13 +81,13 @@ Webflow.push(function () {
     $(document).off("submit"),
     $("#submitHistory").click(function (e) {
       e.preventDefault();
-      prompt = "Act as historian: List places where historical events happened related to " +  document.getElementById("historyEvent")?.value + " in " + document.getElementById("historyLocation")?.value + ". Categorize the results by theme. Give me a one sentence description of each place using an educational tone.";
-      title = document.getElementById("historyEvent")?.value + " history in " + document.getElementById("historyLocation")?.value;
+      prompt = "Act as historian: List places where historical events happened related to " +  document.getElementById("historyEvent").value + " in " + document.getElementById("historyLocation").value + ". Categorize the results by theme. Give me a one sentence description of each place using an educational tone.";
+      title = document.getElementById("historyEvent").value + " history in " + document.getElementById("historyLocation").value;
       window.title = title;
       submitMap(
-        document.getElementById("historyLocation")?.value,
+        document.getElementById("historyLocation").value,
         title,
-        document.getElementById("historyEmail")?.value,
+        document.getElementById("historyEmail").value,
         prompt
       );
     });
@@ -98,13 +98,13 @@ Webflow.push(function () {
     $(document).off("submit"),
     $("#submitVibe").click(function (e) {
       e.preventDefault();
-      prompt = "Act as gen z person: List places with a " +  document.getElementById("vibeVibe")?.value + " in " + document.getElementById("vibeLocation")?.value + ". Give me a one sentence description of each place using gen z slang and emojis. Categorize the results by type of place.";
-      title = document.getElementById("vibeVibe")?.value + " vibes in " + document.getElementById("vibeLocation")?.value;
+      prompt = "Act as gen z person: List places with a " +  document.getElementById("vibeVibe").value + " in " + document.getElementById("vibeLocation").value + ". Give me a one sentence description of each place using gen z slang and emojis. Categorize the results by type of place.";
+      title = document.getElementById("vibeVibe").value + " vibes in " + document.getElementById("vibeLocation").value;
       window.title = title;
       submitMap(
-        document.getElementById("vibeLocation")?.value,
+        document.getElementById("vibeLocation").value,
         title,
-        document.getElementById("vibeEmail")?.value,
+        document.getElementById("vibeEmail").value,
         prompt
       );
     });
@@ -115,13 +115,13 @@ Webflow.push(function () {
     $(document).off("submit"),
     $("#submitFreeform").click(function (e) {
       e.preventDefault();
-      prompt = "Act as tour guide: List places " +  document.getElementById("freeformPrompt")?.value + " in " + document.getElementById("freeformLocation")?.value + ". Give me a one sentence about each place. Categorize the results by type of place. Try to have at least three places in each category.";
-      title = document.getElementById("freeformPrompt")?.value + " in " + document.getElementById("freeformLocation")?.value;
+      prompt = "Act as tour guide: List places " +  document.getElementById("freeformPrompt").value + " in " + document.getElementById("freeformLocation").value + ". Give me a one sentence about each place. Categorize the results by type of place. Try to have at least three places in each category.";
+      title = document.getElementById("freeformPrompt").value + " in " + document.getElementById("freeformLocation").value;
       window.title = title;
       submitMap(
-        document.getElementById("freeformLocation")?.value,
+        document.getElementById("freeformLocation").value,
         title,
-        document.getElementById("freeformEmail")?.value,
+        document.getElementById("freeformEmail").value,
         prompt
       );
     });
@@ -132,13 +132,13 @@ Webflow.push(function () {
     $(document).off("submit"),
     $("#submitTextToMap").click(function (e) {
       e.preventDefault();
-      prompt = "List the places mentioned in the text below. Most places should be in or near " + document.getElementById("textToMapLocation")?.value + ". Categorize by type of place. Leave the description blank. Here is the prompt text:" +  document.getElementById("textToMapPrompt")?.value;
-      title = "Custom map in " + document.getElementById("textToMapLocation")?.value;
+      prompt = "List the places mentioned in the text below. Most places should be in or near " + document.getElementById("textToMapLocation").value + ". Categorize by type of place. Leave the description blank. Here is the prompt text:" +  document.getElementById("textToMapPrompt").value;
+      title = "Custom map in " + document.getElementById("textToMapLocation").value;
       window.title = title;
       submitMap(
-        document.getElementById("textToMapLocation")?.value,
+        document.getElementById("textToMapLocation").value,
         title,
-        document.getElementById("textToMapEmail")?.value,
+        document.getElementById("textToMapEmail").value,
         prompt
       );
     });
@@ -155,7 +155,7 @@ function submitMap(e, t, o, p) {
     }
     window.email = o,
     document.getElementById("loadingvideo").classList.remove("hide"), 
-    document.getElementById("disclaimer").classList.remove("hide"), 
+    document.getElementById("disclaimer").classList.remove("hide"),
     buildMap(e, t, o, p);
 }
 
@@ -183,8 +183,8 @@ async function buildMap(e, t, o, p) {
         document.getElementById("followupbuttons").classList.remove("hide"),
         document.getElementById("editinproxi").href = i.cc_write_link,
         document.getElementById("othermapsheader").classList.remove("hide");
-        
-        //Share Functions 
+
+        //Share Functions
         let n = encodeURIComponent("Check out my " + title + " map. I made it with MapsGPT! #mapsgpt");
         document.getElementById("shareheading").innerHTML = "Share your " + title + " map!",
         document.getElementById("facebookshare").href = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(i.cc_read_link) + "&quote=" + n,
@@ -213,8 +213,8 @@ async function buildMap(e, t, o, p) {
             email: o, "topic_id.$oid": 
             i._id.$oid };
 
-        return amplitude.getInstance().logEvent("MapsGPT: Topic Created", a), 
-        
+        return amplitude.getInstance().logEvent("MapsGPT: Topic Created", a),
+
         // Get Relevant Maps
         setTimeout(function () {
             searchTopics(title, locationdetails);
@@ -230,7 +230,7 @@ async function buildMap(e, t, o, p) {
       prompt: t
     };
 
-    return amplitude.getInstance().logEvent("MapsGPT: Failed Creation", b); 
+    return amplitude.getInstance().logEvent("MapsGPT: Failed Creation", b);
   
 }
 
@@ -240,15 +240,15 @@ async function buildMap(e, t, o, p) {
 let element = document.getElementById("sharemap");
 
 async function shareActions() {
-    updateImage(topicid), 
-    await getPointData(topicid), 
+    updateImage(topicid),
+    await getPointData(topicid),
     await getShareImage();
 }
 async function updateImage(e) {
     const t = await fetch("https://map.proxi.co/api/topics/" + e, { method: "GET", headers: { accept: "application/json", "Content-Type": "application/json" } }),
         o = await t.json();
-    if (t.ok) return (window.shareImageURL = o.custom_social_media_image), 
-    (document.getElementById("socialshareimg").src = o.custom_social_media_image), 
+    if (t.ok) return (window.shareImageURL = o.custom_social_media_image),
+    (document.getElementById("socialshareimg").src = o.custom_social_media_image),
     window.locationdetails = o.default_map_center,
     o;
     console.log("Network response was not ok."), document.getElementById("loadingvideo").classList.add("hide"), document.getElementById("errortext").classList.remove("hide");
@@ -325,14 +325,14 @@ function reset() {
         for (var i = 0; i < emailForms.length; i++) {
           emailForms[i].classList.remove("hide");
         }
-        document.getElementById("location")?.value = document.getElementById("location")?.value,
-        document.getElementById("description")?.value = document.getElementById("description")?.value,
-        document.getElementById("email")?.value = email,
-        document.getElementById("tripEmail")?.value = email,
-        document.getElementById("historyEmail")?.value = email,
-        document.getElementById("vibeEmail")?.value = email,
-        document.getElementById("textToMapEmail")?.value = email,
-        document.getElementById("freeformEmail")?.value = email,
+        document.getElementById("location").value = document.getElementById("location").value,
+        document.getElementById("description").value = document.getElementById("description").value,
+        document.getElementById("email").value = email,
+        document.getElementById("tripEmail").value = email,
+        document.getElementById("historyEmail").value = email,
+        document.getElementById("vibeEmail").value = email,
+        document.getElementById("textToMapEmail").value = email,
+        document.getElementById("freeformEmail").value = email,
         document.getElementById("embedholder").classList.add("hide"),
         document.getElementById("logintoproxi").classList.remove("hide"),
         document.getElementById("mapsize").classList.remove("long"),
@@ -451,7 +451,7 @@ async function getUserLocation() {
     document.getElementById("nearyou").textContent = "Near " + obj.city.name;
    })
   .catch(error => console.log('error', error));
-  
+
 }
 async function leaderboard2(location) {
   try {
