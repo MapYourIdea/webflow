@@ -180,7 +180,8 @@ Webflow.push(function () {
           document.getElementById("textToMapLocation").value,
           title,
           document.getElementById("textToMapEmail").value,
-          prompt
+          prompt,
+          true
         );
       }
     });
@@ -197,19 +198,6 @@ function submitMap(e, t, o, p, isTtm = false) {
     document.getElementById("disclaimer").classList.remove("hide"),
     buildMap(e, t, o, p, isTtm);
 }
-
-// Map Loading & Activation
-function submitMapTTM(e, t, o, p) {
-    var emailForms = document.querySelectorAll("#email-form");
-    for (var i = 0; i < emailForms.length; i++) {
-      emailForms[i].classList.add("hide");
-    }
-    window.email = o,
-    document.getElementById("loadingvideo").classList.remove("hide"),
-    document.getElementById("disclaimer").classList.remove("hide"),
-    buildMap(e, t, o, p, true);
-}
-
 
 //Create Map Functions
 async function buildMap(e, t, o, p, isTtm = false) {
